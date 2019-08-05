@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+	<script src="js/vue.js"></script>
+	<script type="text/javascript">
+	(function(){
+		window.onload=function(){
+			var app=new Vue({
+				el:"#app",
+				data:{
+					list:[
+						{singer:"S.H.E",song:"熱帶雨林"}
+					],
+					playing_minite:"00",
+					playing_second:"00",
+					total_minite:"4",
+					total_second:"00"
+					
+
+				},
+				methods:{
+					
+				},
+				mounted:function(){
+
+				}
+			});
+			var date01=new Date();
+			var hour=date01.getHours();
+			var minute=date01.getMinutes();
+			var hour_now=document.getElementById("hour");
+			var minute_now=document.getElementById("minute");
+			hour_now.textContent=hour;
+			if(minute<10){
+				minute="0"+minute	
+			};
+			minute_now.textContent=minute;
+			　
+
+		}
+
+	})();
+	</script>
+	<style type="text/css">
+
+		body{
+			margin: 0;
+			background-color:rgba(0, 0, 0, 0.16);
+		}
+		#app{
+			position: relative;
+			margin: auto;
+			width:375pt;
+			height:667pt;
+			background-color: white;
+		}
+		.top_menu_bar{
+			position: absolute;
+			display: block;
+			top:20pt;
+			left: 0pt;
+			width: 375pt;
+			height:44pt;
+			border: black;
+			text-align: center;
+		}
+		.pic_component{
+			position: absolute;
+			display:inline-block;
+			left:20pt;
+			top:14pt;
+		}
+		.top_time_word{
+			position: absolute;
+			display:inline;
+			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+			font-weight: bold;
+			font-size: 17px;
+			line-height:44pt;
+			margin-left:170pt;
+			margin-top: 0pt;
+			padding: 0pt;
+		}
+		.top_word{
+			display:inline;
+			margin: 0px;
+			top:10.14pt;
+			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+			font-weight: bold;
+			font-size: 17px;
+			line-height:44pt;
+		}
+		.pic_menu{
+			position: absolute;
+			display:inline-block;
+			left:338pt;
+			top:22.44pt;
+		}
+		.middle_area{
+			position: absolute;
+			display: inline-block;
+			width: 220pt;
+			height: 220pt;
+			border-radius: 220pt;
+			background-color: aqua;
+			top:124pt;
+			left:77pt;
+			overflow:hidden
+
+		}
+		.circle{
+			position: absolute;
+			display: inline-block;
+			width:40pt;
+			height:40pt;
+			color: white;
+			border-radius: 40pt;
+			top: calc(50% - 20pt);
+    		left: calc(50% - 20pt);
+			z-index:1;
+		}
+		.pic_CD{
+			position: absolute;
+			display: inline-block;
+			width:280pt;
+			height:220pt;
+			border-radius: 220pt;
+			top: calc(50% - 110pt);
+    		left: calc(50% - 140pt);
+		}
+		
+		.button_area{
+			position:absolute;
+			margin: 0pt;
+			display:block;
+			top:415pt;
+			width:375pt;
+			text-align: center;	
+		}
+		.singer{
+			display:inline;
+			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+			font-weight: bold;
+			font-size: 18px;
+			margin: 0pt;	
+		}
+		.song_name{
+			display:inline-block;
+			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+			font-size: 14px;
+			margin: 0pt;
+			color:#9D9D9D;	
+		}
+		.control_row{
+			position:absolute;
+			margin: 0pt;
+			display:block;
+			height: 7pt;
+			width: 100%;
+			top:484pt;
+		}
+		.play_time{
+			position:absolute;
+			display:block;
+			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+			font-size: 10px;
+			color:#9D9D9D;
+			top:0pt;
+			left:28pt;
+			margin: 0pt;
+		}
+		.play_bar{
+			position:absolute;
+			display:inline-block;
+			box-shadow:3px 2px 5px rgba(0, 0, 0, 0.16),inset 1px 1px 1px;
+			width:252pt;
+			height:7pt;
+			left: 61pt;
+		}
+		.total_time{
+			position:absolute;
+			display:block;
+			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+			font-size: 10px;
+			color:#9D9D9D;
+			top:0pt;
+			right:30pt;
+			margin: 0pt;
+		}
+		.play_bar::before{
+			content: "";
+			position:absolute;
+			display:inline-block;
+			background:linear-gradient(to right,pink,red);
+			width:100pt;
+			height:7pt;
+			left:0pt;
+			z-index:2;
+			border-top-right-radius: 20pt;
+			border-bottom-right-radius: 20pt;
+		}
+		.control_row_button{
+			position:absolute;
+			display:block;
+			top:535pt;
+			width:375pt;
+			height:84pt;
+			text-align:center;	
+		}
+		.row_button_imgs{
+			position:absolute;
+			display:block;
+			padding-left: 57px;
+			margin-top:20px; 
+		}
+		.row_button_imgs>img{
+			position: relative;
+			z-index:1;
+			float: left;
+    		height: 16pt;
+    		width:16pt;
+    		margin-left: 47px;
+			cursor: pointer;
+		}
+		.row_button_imgs>img:nth-child(3){
+			height: 40pt;
+    		width:30pt;
+			margin-top: -12pt;
+		}
+		.play_circle{
+			position:absolute;
+			margin-top: -13pt;
+			margin-left:-33pt;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div class="top_time_word"><span id="hour">點</span>:<span id="minute">分</span></div>
+		<div class="top_menu_bar">
+			<img class="pic_component" src="img/component.png">
+			<p class="top_word">Playing Now</p>
+			<img class="pic_menu" src="img/menu.png">
+		</div>
+		<div class="middle_area">
+			<div class="circle"></div>
+			<img class="pic_CD"src="img/she.jpg">
+		</div>
+		<div class="button_area" v-for="(model) in list">
+			<p class="singer">{{model.singer}}</p><br>
+			<p class="song_name">{{model.song}}</p>
+		</div>
+		<div class="control_row">
+			<div class="play_time">{{playing_minite}}:{{playing_second}}</div>
+			<div class="play_bar"></div>
+			<div class="total_time">{{total_minite}}:{{total_second}}</div>
+		</div>
+		<div class="control_row_button">
+			<div class="row_button_imgs">
+				<img src="img/repeat.png">
+				<img src="img/but-previous.png">
+				<img src="img/playbutton.png">
+				<img src="img/but-next.png">
+				<img src="img/recircle.png">
+			</div>
+			<img class="play_circle"src="img/circle.png">
+		</div>
+		
+	
+	</div>
+</body>
+</html>
