@@ -1,277 +1,847 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link href="" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
-	<script src="js/vue.js"></script>
-	<script type="text/javascript">
-	(function(){
-		window.onload=function(){
-			var app=new Vue({
-				el:"#app",
-				data:{
-					list:[
-						{singer:"S.H.E",song:"熱帶雨林"}
-					],
-					playing_minite:"00",
-					playing_second:"00",
-					total_minite:"4",
-					total_second:"00"
-					
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Fascinate+Inline|Noto+Sans+TC|Roboto|Roboto+Mono|Ubuntu&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-				},
-				methods:{
-					
-				},
-				mounted:function(){
+    <title>MP3-player</title>
+    <style>
+      .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 65px; /* Preferred icon size */
+        display: inline-block;
 
-				}
-			});
-			var date01=new Date();
-			var hour=date01.getHours();
-			var minute=date01.getMinutes();
-			var hour_now=document.getElementById("hour");
-			var minute_now=document.getElementById("minute");
-			hour_now.textContent=hour;
-			if(minute<10){
-				minute="0"+minute	
-			};
-			minute_now.textContent=minute;
-			　
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        color: white;
+        vertical-align: middle;
 
-		}
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
 
-	})();
-	</script>
-	<style type="text/css">
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
 
-		body{
-			margin: 0;
-			background-color:rgba(0, 0, 0, 0.16);
-		}
-		#app{
-			position: relative;
-			margin: auto;
-			width:375pt;
-			height:667pt;
-			background-color: white;
-		}
-		.top_menu_bar{
-			position: absolute;
-			display: block;
-			top:20pt;
-			left: 0pt;
-			width: 375pt;
-			height:44pt;
-			border: black;
-			text-align: center;
-		}
-		.pic_component{
-			position: absolute;
-			display:inline-block;
-			left:20pt;
-			top:14pt;
-		}
-		.top_time_word{
-			position: absolute;
-			display:inline;
-			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-			font-weight: bold;
-			font-size: 17px;
-			line-height:44pt;
-			margin-left:170pt;
-			margin-top: 0pt;
-			padding: 0pt;
-		}
-		.top_word{
-			display:inline;
-			margin: 0px;
-			top:10.14pt;
-			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-			font-weight: bold;
-			font-size: 17px;
-			line-height:44pt;
-		}
-		.pic_menu{
-			position: absolute;
-			display:inline-block;
-			left:338pt;
-			top:22.44pt;
-		}
-		.middle_area{
-			position: absolute;
-			display: inline-block;
-			width: 220pt;
-			height: 220pt;
-			border-radius: 220pt;
-			background-color: aqua;
-			top:124pt;
-			left:77pt;
-			overflow:hidden
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+      }
 
-		}
-		.circle{
-			position: absolute;
-			display: inline-block;
-			width:40pt;
-			height:40pt;
-			color: white;
-			border-radius: 40pt;
-			top: calc(50% - 20pt);
-    		left: calc(50% - 20pt);
-			z-index:1;
-		}
-		.pic_CD{
-			position: absolute;
-			display: inline-block;
-			width:280pt;
-			height:220pt;
-			border-radius: 220pt;
-			top: calc(50% - 110pt);
-    		left: calc(50% - 140pt);
-		}
-		
-		.button_area{
-			position:absolute;
-			margin: 0pt;
-			display:block;
-			top:415pt;
-			width:375pt;
-			text-align: center;	
-		}
-		.singer{
-			display:inline;
-			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-			font-weight: bold;
-			font-size: 18px;
-			margin: 0pt;	
-		}
-		.song_name{
-			display:inline-block;
-			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-			font-size: 14px;
-			margin: 0pt;
-			color:#9D9D9D;	
-		}
-		.control_row{
-			position:absolute;
-			margin: 0pt;
-			display:block;
-			height: 7pt;
-			width: 100%;
-			top:484pt;
-		}
-		.play_time{
-			position:absolute;
-			display:block;
-			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-			font-size: 10px;
-			color:#9D9D9D;
-			top:0pt;
-			left:28pt;
-			margin: 0pt;
-		}
-		.play_bar{
-			position:absolute;
-			display:inline-block;
-			box-shadow:3px 2px 5px rgba(0, 0, 0, 0.16),inset 1px 1px 1px;
-			width:252pt;
-			height:7pt;
-			left: 61pt;
-		}
-		.total_time{
-			position:absolute;
-			display:block;
-			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-			font-size: 10px;
-			color:#9D9D9D;
-			top:0pt;
-			right:30pt;
-			margin: 0pt;
-		}
-		.play_bar::before{
-			content: "";
-			position:absolute;
-			display:inline-block;
-			background:linear-gradient(to right,pink,red);
-			width:100pt;
-			height:7pt;
-			left:0pt;
-			z-index:2;
-			border-top-right-radius: 20pt;
-			border-bottom-right-radius: 20pt;
-		}
-		.control_row_button{
-			position:absolute;
-			display:block;
-			top:535pt;
-			width:375pt;
-			height:84pt;
-			text-align:center;	
-		}
-		.row_button_imgs{
-			position:absolute;
-			display:block;
-			padding-left: 57px;
-			margin-top:20px; 
-		}
-		.row_button_imgs>img{
-			position: relative;
-			z-index:1;
-			float: left;
-    		height: 16pt;
-    		width:16pt;
-    		margin-left: 47px;
-			cursor: pointer;
-		}
-		.row_button_imgs>img:nth-child(3){
-			height: 40pt;
-    		width:30pt;
-			margin-top: -12pt;
-		}
-		.play_circle{
-			position:absolute;
-			margin-top: -13pt;
-			margin-left:-33pt;
-		}
+      body {
+        position: relative;
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+      }
+      .abc {
+        position: absolute;
+        display: flex;
 
-	</style>
-</head>
-<body>
-	<div id="app">
-		<div class="top_time_word"><span id="hour">點</span>:<span id="minute">分</span></div>
-		<div class="top_menu_bar">
-			<img class="pic_component" src="img/component.png">
-			<p class="top_word">Playing Now</p>
-			<img class="pic_menu" src="img/menu.png">
-		</div>
-		<div class="middle_area">
-			<div class="circle"></div>
-			<img class="pic_CD"src="img/she.jpg">
-		</div>
-		<div class="button_area" v-for="(model) in list">
-			<p class="singer">{{model.singer}}</p><br>
-			<p class="song_name">{{model.song}}</p>
-		</div>
-		<div class="control_row">
-			<div class="play_time">{{playing_minite}}:{{playing_second}}</div>
-			<div class="play_bar"></div>
-			<div class="total_time">{{total_minite}}:{{total_second}}</div>
-		</div>
-		<div class="control_row_button">
-			<div class="row_button_imgs">
-				<img src="img/repeat.png">
-				<img src="img/but-previous.png">
-				<img src="img/playbutton.png">
-				<img src="img/but-next.png">
-				<img src="img/recircle.png">
-			</div>
-			<img class="play_circle"src="img/circle.png">
-		</div>
-		
-	
-	</div>
-</body>
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+      }
+
+      .main01 {
+        flex: 1;
+
+        overflow: auto;
+        background-color: black;
+      }
+      .main01Context {
+        display: flex;
+      }
+      .leftAside {
+        flex: 1;
+        background-color: #2c2941;
+
+        padding-top: 40px;
+      }
+      ul {
+        display: block;
+        margin: 0px 0px 30px;
+        padding: 0px;
+      }
+      li {
+        padding: 5px 0px 5px 0px;
+        list-style: none;
+      }
+      .leftAside a {
+        display: inline-block;
+        color: beige;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        padding-left: 35px;
+        text-decoration: none;
+      }
+      .leftAside a:not(.font02) {
+        cursor: pointer;
+      }
+      .leftAside .redMark {
+        border-left: 4px solid red;
+      }
+      .font02 {
+        font-family: 'Roboto', sans-serif;
+        font-style: oblique;
+      }
+      .middle {
+        display: flex;
+        flex: 3.5;
+        flex-direction: column;
+      }
+      .titleList {
+        flex: 1;
+        padding: 0px 40px;
+        background: linear-gradient(180deg, #ff4448, #2d2941);
+      }
+
+      .searchArea {
+        padding: 16px 0px;
+      }
+      .search {
+        padding: 8px 30px;
+        border: 1px solid white;
+        box-sizing: border-box;
+        border-radius: 15px;
+      }
+      .searchArea input {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        padding-left: 10px;
+        color: white;
+      }
+      .material-icons.a {
+        font-size: 24px;
+      }
+      .singerArea {
+        padding: 10px 0px;
+      }
+      .photo {
+        display: flex;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+        float: left;
+      }
+      .photo img {
+        max-width: 150%;
+        max-height: 150%;
+        margin: 0px;
+        clear: both;
+      }
+      .singerName {
+        position: relative;
+        margin-left: 200px;
+        padding-left: 13px;
+      }
+      .singerName > p {
+        font-family: 'Ubuntu', sans-serif;
+        color: white;
+        font-size: 18px;
+        margin: 8px;
+      }
+      .singerName > h5 {
+        font-family: 'Fascinate Inline', cursive;
+        color: white;
+        font-size: 50px;
+        margin: 8px;
+      }
+      .singerButton {
+        position: relative;
+        display: inline-block;
+        white-space: nowrap;
+      }
+      #titlePlay {
+        display: inline-block;
+        width: 120px;
+        text-align: center;
+        height: 40px;
+        color: white;
+        background-color: rgb(250, 7, 7);
+        line-height: 40px;
+        border-radius: 30px;
+        font-size: 20px;
+        font-family: 'Roboto Mono', monospace;
+        cursor: pointer;
+      }
+      #titleFollow {
+        display: inline-block;
+        width: 120px;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        color: white;
+        border: 1px solid white;
+        font-size: 20px;
+        border-radius: 30px;
+        font-family: 'Roboto Mono', monospace;
+        cursor: pointer;
+      }
+      .footerList {
+        position: relative;
+        flex: 1;
+        padding: 20px 10px 0px 40px;
+        display: flex;
+      }
+      /* .footerList_0 {
+        position: absolute;
+        padding: 20px 10px 0px 40px;
+        display: flex;
+        width: 100%;
+      } */
+      .overview {
+        flex: 1;
+        align-items: flex-start;
+        margin: 0px;
+      }
+      .overview > h5 {
+        text-align: left;
+        color: rgb(228, 227, 227);
+        font-size: 17px;
+        font-family: 'Arvo', serif;
+        margin: 0px 0px 20px;
+      }
+      .overview > h3 {
+        text-align: left;
+        color: rgb(175, 174, 174);
+        font-family: 'Ubuntu', sans-serif;
+        color: white;
+        font-size: 15px;
+        margin: 0px 0px 8px;
+      }
+      .overview > p {
+        text-align: left;
+        color: rgb(150, 128, 128);
+        font-size: 15px;
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+      .songList {
+        flex: 2;
+        align-items: flex-start;
+        margin: 0px;
+        margin-left: 100px;
+      }
+      .albumMenu {
+        color: white;
+        font-size: 18px;
+        font-family: 'Roboto Mono', monospace;
+      }
+      .albumMenu > a {
+        margin-right: 30px;
+        cursor: pointer;
+      }
+      .list > p {
+        font-size: 15px;
+        font-family: 'Noto Sans TC', sans-serif;
+        color: white;
+      }
+      .table01 {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .table01 tr {
+        text-align: left;
+        vertical-align: middle;
+        border-bottom: 2px solid white;
+      }
+      .table01 td {
+        padding: 10px;
+        color: white;
+
+        font-family: 'Ubuntu', sans-serif;
+      }
+      .index {
+        width: 1em;
+      }
+      .name {
+        width: 30em;
+        cursor: pointer;
+      }
+      .duration {
+        width: 3em;
+      }
+
+      .main02 {
+        display: flex;
+        height: 100px;
+        background-color: rgb(32, 37, 54);
+      }
+      .scrollbar {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 0px;
+        background-color: #ddd;
+        margin: 10px 10px;
+      }
+      .scrollbar::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+
+        background-color: #f00;
+      }
+      .scrollbarButton {
+        position: absolute;
+        display: block;
+        background-color: #ddd;
+        width: 10px;
+        height: 10px;
+        top: -5px;
+      }
+      .section01 {
+        flex: 1;
+      }
+      .img {
+        padding: 16px;
+        float: left;
+      }
+
+      .playingSongName {
+        margin: 16px 0px 5px;
+
+        font-family: 'Ubuntu', sans-serif;
+
+        color: rgb(150, 128, 128);
+        font-size: 25px;
+      }
+      .playingSinger {
+        font-family: 'Ubuntu', sans-serif;
+        color: white;
+        font-size: 20px;
+
+        top: 0px;
+      }
+      .time {
+        margin-top: 0px;
+        font-size: 25px;
+      }
+      .time p {
+        font-family: 'Ubuntu', sans-serif;
+        margin-top: 0px;
+        display: inline-block;
+        color: white;
+      }
+      .section02 {
+        flex: 2;
+      }
+      .button {
+        padding: 10px;
+      }
+      .button i {
+        margin: 15px;
+        cursor: pointer;
+      }
+      .section03 {
+        flex: 0.8;
+      }
+      .section03 .volumeArea {
+        padding: 40px 0px;
+      }
+      .section03 i {
+        margin: 15px;
+        cursor: pointer;
+      }
+      .material-icons.b {
+        font-size: 30px;
+        margin: 0px;
+      }
+      .volumePoint {
+        align-content: center;
+        vertical-align: middle;
+      }
+    </style>
+    <script>
+      function addDrag(el) {
+        var down = false;
+        var move = false;
+        var elX = 0;
+        var elY = 0;
+        var pageX = 0;
+        var pageY = 0;
+        var moveX = 0;
+        var moveY = 0;
+        var eventList = {};
+        setPos(el, -el.offsetWidth * 0.5, -el.offsetHeight * 0.5);
+        function mousedown(e) {
+          if (!down) {
+            elX = el.offsetLeft;
+            elY = el.offsetTop;
+            pageX = e.pageX;
+            pageY = e.pageY;
+            down = true;
+            window.addEventListener('mouseup', mouseup);
+            window.addEventListener('mousemove', mousemove);
+            if (eventList['down']) {
+              eventList['down'].call(this);
+            }
+          }
+        }
+        function mouseup(e) {
+          if (down) {
+            down = false;
+            move = false;
+            window.removeEventListener('mouseup', mouseup);
+            window.removeEventListener('mousemove', mousemove);
+            if (eventList['up']) {
+              eventList['up'].call(this);
+            }
+          }
+        }
+        function mousemove(e) {
+          if (down) {
+            moveX = e.pageX - pageX;
+            moveY = e.pageY - pageY;
+            setPos(el, elX + moveX, elY + moveY);
+            move = true;
+          }
+        }
+        function setPos(el, x, y) {
+          var pos = limit(x, y, {
+            x: -el.offsetWidth * 0.5,
+            y: -el.offsetHeight * 0.5,
+            width: el.parentElement.offsetWidth,
+            height: el.parentElement.offsetHeight,
+          });
+          el.style.left = pos.x + 'px';
+          el.style.top = pos.y + 'px';
+          if (eventList['change']) {
+            eventList['change'].call(
+              this,
+              el.parentElement.offsetWidth ? (pos.x + el.offsetWidth * 0.5) / el.parentElement.offsetWidth : 0,
+              el.parentElement.offsetHeight ? (pos.y + el.offsetHeight * 0.5) / el.parentElement.offsetHeight : 0,
+            );
+          }
+        }
+        function limit(x, y, rect) {
+          var xx = Math.max(rect.x, Math.min(rect.x + rect.width, x));
+          var yy = Math.max(rect.y, Math.min(rect.y + rect.height, y));
+
+          return { x: xx, y: yy };
+        }
+        el.addEventListener('mousedown', mousedown);
+        return {
+          setEvent: function(type, fun) {
+            if (type) {
+              eventList[type] = fun;
+            }
+            //console.log('aaa');
+          },
+          setRate: function(rateX, rateY) {
+            setPos(el, rateX * el.parentElement.offsetWidth - el.offsetWidth * 0.5, rateY * el.parentElement.offsetHeight - el.offsetHeight * 0.5);
+          },
+          getRate: function() {
+            return {
+              x: el.parentElement.offsetWidth ? (el.offsetLeft + el.offsetWidth * 0.5) / el.parentElement.offsetWidth : 0,
+              y: el.parentElement.offsetHeight ? (el.offsetTop + el.offsetHeight * 0.5) / el.parentElement.offsetHeight : 0,
+            };
+          },
+          getDragDown: function() {
+            return down;
+          },
+        };
+      }
+
+      window.onload = function() {
+        function loadAudio(url, name, time) {
+          var qweq = new Promise(function(resolve, reject) {
+            /*setTimeout(function() {
+              resolve({ index: index, url: url });
+            }, 3000);*/
+            var Audio01 = new Audio(url);
+            Audio01.ondurationchange = function() {
+              //console.log(Audio01);
+              resolve({ audio: Audio01, name: name, time: time });
+            };
+            Audio01.load();
+          });
+          return qweq;
+        }
+
+        var sounds = [
+          { src: 'mp3/1.mp3', name: '快樂星球' },
+          { src: 'mp3/2.mp3', name: '聽袁惟仁彈吉他' },
+          { src: 'mp3/3.mp3', name: '戀人未滿' },
+          { src: 'mp3/4.mp3', name: '十七' },
+          { src: 'mp3/5.mp3', name: '天灰' },
+          { src: 'mp3/6.mp3', name: '熱帶雨林' },
+          { src: 'mp3/7.mp3', name: '愛上妳' },
+          { src: 'mp3/8.mp3', name: '沿海公路' },
+          { src: 'mp3/9.mp3', name: '觸電' },
+          { src: 'mp3/10.mp3', name: '不想長大' },
+        ];
+
+        var soundList = [];
+        var build = document.getElementById('build');
+        for (var i = 0; i < sounds.length; i++) {
+          var ccc01 = ccc(i + 1, sounds[i].name, 0);
+          build.appendChild(ccc01.element);
+          soundList.push(loadAudio(sounds[i].src, sounds[i].name, ccc01.time));
+        }
+        Promise.all(soundList).then(function(data) {
+          console.log('aaabbb', data);
+          for (var key in data) {
+            data[key].time(timeChange(data[key].audio.duration));
+            console.log(data[key].name, data[key].audio.duration);
+          }
+        });
+
+        var menu = [
+          { index: 'mp3/1.mp3', name: '快樂星球' },
+          { index: 'mp3/2.mp3', name: '聽袁惟仁彈吉他' },
+          { index: 'mp3/3.mp3', name: '戀人未滿' },
+          { index: 'mp3/4.mp3', name: '十七' },
+          { index: 'mp3/5.mp3', name: '天灰' },
+          { index: 'mp3/6.mp3', name: '熱帶雨林' },
+          { index: 'mp3/7.mp3', name: '愛上妳' },
+          { index: 'mp3/8.mp3', name: '沿海公路' },
+          { index: 'mp3/9.mp3', name: '觸電' },
+          { index: 'mp3/10.mp3', name: '不想長大' },
+        ];
+
+        var mp301 = new Audio(menu[0].index);
+        var next = document.getElementById('next');
+        var songName = document.getElementById('songName');
+        var nowTime = document.getElementById('nowTime');
+        var totalTime = document.getElementById('totalTime');
+        var previous = document.getElementById('previous');
+        var circle = document.getElementById('circle');
+        var build = document.getElementById('build');
+        var color = 1;
+
+        var volumeIcon = document.getElementById('volumeIcon');
+        var volumePoint = document.getElementById('volumePoint');
+        var volume = true;
+
+        var circleYes = false;
+        nowTime.textContent = timeChange(mp301.currentTime);
+
+        function ccc(i, name, time) {
+          var build01 = document.createElement('tr');
+          var buildIndex = document.createElement('td');
+          var buildName = document.createElement('td');
+          var buildTime = document.createElement('td');
+          buildIndex.classList.add('index');
+          buildName.classList.add('name');
+          buildTime.classList.add('duration');
+
+          buildIndex.textContent = i;
+          buildName.textContent = name;
+          buildTime.textContent = time;
+          build01.appendChild(buildIndex);
+          build01.appendChild(buildName);
+          build01.appendChild(buildTime);
+          return {
+            element: build01,
+            time: function(durationTime) {
+              buildTime.textContent = durationTime;
+            },
+          };
+        }
+        /*function ss(x){
+
+        }*/
+
+        function bbb() {
+          for (var i = 0; i < menu.length; i++) {
+            build.appendChild(ccc(i + 1, menu[i].name, 0));
+          }
+        }
+
+        var name = document.querySelectorAll('.name');
+
+        songName.textContent = menu[0].name;
+        var DD = 0;
+        function timeChange(time) {
+          var minute = Math.floor(time / 60);
+          var second = Math.floor(time - minute * 60);
+          if (minute < 10) {
+            minute = '0' + minute;
+          }
+          if (second < 10) {
+            second = '0' + second;
+          }
+          return minute + ':' + second;
+        }
+
+        //mp301.controls = true;
+        mp301.ontimeupdate = function(e) {
+          //console.log(e);
+          if (!scrollbar01.getDragDown()) {
+            var rate = mp301.currentTime / mp301.duration;
+            scrollbar01.setRate(rate, 0);
+            setInterval(function() {
+              nowTime.textContent = timeChange(mp301.currentTime);
+              totalTime.textContent = timeChange(mp301.duration);
+              name[DD].parentElement.style.background = 'gray';
+              for (var i = 0; i < name.length; i++) {
+                if (i !== DD) {
+                  name[i].parentElement.style.background = 'transparent';
+                }
+              }
+            }, 1000);
+
+            mp301.onended = function(e) {
+              if (DD < 9 && !circleYes) {
+                DD += 1;
+                mp301.src = menu[DD].index;
+                songName.textContent = menu[DD].name;
+                mp301.play();
+              } else if (DD < 9 && circleYes) {
+                mp301.play();
+              }
+            };
+          }
+        };
+
+        next.addEventListener('click', function() {
+          if (!scrollbar01.getDragDown() && DD < 9) {
+            DD += 1;
+            mp301.src = menu[DD].index;
+            songName.textContent = menu[DD].name;
+            mp301.load();
+            mp301.currentTime = 0;
+            mp301.play();
+          }
+        });
+
+        previous.addEventListener('click', function() {
+          if (!scrollbar01.getDragDown() && DD > 0) {
+            DD -= 1;
+            mp301.src = menu[DD].index;
+            songName.textContent = menu[DD].name;
+            mp301.load();
+            mp301.currentTime = 0;
+            mp301.play();
+          }
+        });
+
+        circle.addEventListener('click', function() {
+          circleYes = !circleYes;
+          if (circleYes) {
+            circle.textContent = 'repeat_one';
+          } else {
+            circle.textContent = 'repeat';
+          }
+        });
+
+        var playButton = document.getElementById('playButton');
+        var add30s = document.getElementById('add30s');
+        var back30s = document.getElementById('back30s');
+        add30s.addEventListener('click', function() {
+          mp301.currentTime += 30;
+          /*var rate = scrollbar01.getRate();
+                scrollbar01.setRate(rate.x + 0.1, 0);*/
+        });
+        back30s.addEventListener('click', function() {
+          mp301.currentTime -= 30;
+        });
+        playButton.addEventListener('click', function() {
+          playButton.classList.toggle('play');
+          var a = playButton.classList.contains('play');
+          if (a) {
+            mp301.play();
+            playButton.textContent = 'pause';
+          } else {
+            mp301.pause();
+            playButton.textContent = 'play_arrow';
+          }
+        });
+        //滾動拉霸//
+        var scrollbar01 = addDrag(document.getElementById('scrollbar01').querySelector('.scrollbarButton'));
+        scrollbar01.setEvent('change', function(rateX, rateY) {
+          if (scrollbar01.getDragDown()) {
+            mp301.currentTime = rateX * mp301.duration;
+          }
+        });
+        var paused;
+        scrollbar01.setEvent('down', function() {
+          paused = mp301.paused;
+          if (!paused) {
+            mp301.pause();
+          }
+          //console.log('down', mp301.paused);
+        });
+        scrollbar01.setEvent('up', function() {
+          console.log('up');
+          if (!paused) {
+            mp301.play();
+          }
+        });
+        volumeIcon.addEventListener('click', function() {
+          volume = !volume;
+          if (volume) {
+            volumeIcon.textContent = 'volume_up';
+            volumePoint.value = 50;
+            mp301.volume = volumePoint.value / 100;
+          } else {
+            volumeIcon.textContent = 'volume_off';
+            volumePoint.value = 0;
+            mp301.volume = 0;
+          }
+        });
+        volumePoint.addEventListener('change', function() {
+          mp301.volume = volumePoint.value / 100;
+          if (volumePoint.value == 0) {
+            volumeIcon.textContent = 'volume_off';
+          } else {
+            volumeIcon.textContent = 'volume_up';
+          }
+        });
+
+        for (var j = 0; j < menu.length; j++) {
+          name[j].addEventListener('click', function(el) {
+            for (var i = 0; i < menu.length; i++) {
+              if (el.currentTarget == name[i]) {
+                DD = i;
+                mp301.src = menu[DD].index;
+                songName.textContent = menu[DD].name;
+                mp301.load();
+                mp301.currentTime = 0;
+                mp301.play();
+                return;
+              }
+            }
+          });
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div class="abc">
+      <div class="main01">
+        <div class="main01Context">
+          <aside class="leftAside">
+            <ul>
+              <li><a class="redMark">Browse</a></li>
+              <li><a>Radio</a></li>
+            </ul>
+            <ul>
+              <li><a class="font02">OUR LIBRARY</a></li>
+              <li><a>Recently Played</a></li>
+              <li><a>Songs</a></li>
+              <li><a>Albums</a></li>
+              <li><a>Artists</a></li>
+            </ul>
+            <ul>
+              <li><a class="font02">PLAYLISTS</a></li>
+              <li><a>Pop</a></li>
+              <li><a>Sleep</a></li>
+            </ul>
+          </aside>
+          <section class="middle">
+            <div class="titleList">
+              <div class="searchArea">
+                <label class="search" for="search"><i class="material-icons a"> search </i><input name="search" type="text" placeholder="search"/></label>
+              </div>
+              <div class="singerArea">
+                <div class="photo">
+                  <img src="img/she.jpg" />
+                </div>
+                <div class="singerName">
+                  <p>Artists</p>
+                  <h5>S.H.E</h5>
+                  <p>15,000,000 monthly listeners</p>
+                  <div class="singerButton">
+                    <div id="titlePlay">Play</div>
+                    <div id="titleFollow">Follow</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="footerList">
+              <!-- <div class="footerList_0"> -->
+              <div class="overview">
+                <h5>OVERVIEW</h5>
+                <h3>ABOUT</h3>
+                <p>
+                  S.H.E，為臺灣殿堂級女子演唱團體，其團名取自三位成員英文名字的首個字母，是由Selina（任家萱）、Hebe（田馥甄）和Ella（陳嘉樺）三位成員組成。三人在2000年參加《宇宙2000實力美少女爭霸戰》選秀比賽，之後被宇宙唱片（現名華研國際音樂）簽下培訓後，於2001年9月11日正式出道，發行首張專輯《女生宿舍》。
+                  2018年9月30日，S.H.E與老東家華研國際音樂合約到期，不再續約，組合成員後宣布自組公司。
+                </p>
+              </div>
+              <div class="songList">
+                <div class="albumMenu">
+                  <a>SONGS</a>
+                  <a>ALBUMS</a>
+                  <a>CONCERTS</a>
+                  <a>NEWS</a>
+                </div>
+                <div class="list">
+                  <p>POPULAR RELEASES</p>
+                  <table class="table01">
+                    <tbody id="build"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+          </section>
+        </div>
+      </div>
+      <div class="main02">
+        <div id="scrollbar01" class="scrollbar">
+          <div class="scrollbarButton"></div>
+        </div>
+        <section class="section01">
+          <div class="img">
+            <img src="img/she02.jpg" width="80px" height="80px" />
+          </div>
+
+          <p id="songName" class="playingSongName"><small class="playingSinger">S.H.E</small></p>
+
+          <div class="time">
+            <p id="nowTime" class="playingNowTime"></p>
+            <p>/</p>
+            <p id="totalTime" class="totalSongTime"></p>
+          </div>
+        </section>
+        <section class="section02">
+          <div class="button">
+            <i id="circle" class="material-icons">
+              repeat
+            </i>
+            <i id="back30s" class="material-icons">
+              replay_30
+            </i>
+            <i id="previous" class="material-icons">
+              skip_previous
+            </i>
+            <i id="playButton" class="material-icons">
+              play_arrow
+            </i>
+            <i id="next" class="material-icons">
+              skip_next
+            </i>
+            <i id="add30s" class="material-icons">
+              forward_30
+            </i>
+          </div>
+        </section>
+        <section class="section03">
+          <div class="volumeArea">
+            <i id="volumeIcon" class="material-icons b">
+              volume_up
+            </i>
+            <input id="volumePoint" class="volumePoint" type="range" />
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
 </html>
